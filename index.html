@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <p class="paragraph">
+        This JavaScript code is designed to create a scrolling effect.
+Overall, this code creates a smooth scrolling effect where words in
+a paragraph gradually appear as the user scrolls down the page, giving
+a visually pleasing experience
+    </p>
+    <script>
+        let paragraph = document.querySelector('.paragraph')
+        let spans = paragraph.textContent.trim().split(' ').map(word => `<span>${word}&nbsp;</span>`);
+        paragraph.innerHTML = spans.join('');
+    
+
+    window.addEventListener('scroll',()=>{
+        let scrollPosition=window.scrollY;
+        let paragraphTop=paragraph.getBoundingClientRect().top;
+        document.querySelectorAll('.paragraph span').forEach((span,index)=>{
+            let spanTop=paragraphTop+(span.offsetHeight + 20)*index;
+            span.classList.toggle('reveal',scrollPosition>spanTop-20);
+        });
+    });
+    </script>
+
+    
+</body>
+
+</html>
